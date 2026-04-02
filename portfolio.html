@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>広告運用 実績ポートフォリオ | yuen</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #f5f0e8;
+    --cream: #ede8dc;
+    --accent: #c0392b;
+    --gold: #b8963e;
+    --muted: #888880;
+    --border: #d4cfc4;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Shippori Mincho', serif;
+    line-height: 1.8;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding: 56px 40px 40px;
+    border-bottom: 2px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 16px;
+    position: relative;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: var(--accent);
+  }
+  .brand {
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    text-transform: uppercase;
+  }
+  header h1 {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  header h1 span {
+    color: var(--accent);
+  }
+  .header-meta {
+    text-align: right;
+  }
+  .header-meta p {
+    font-size: 13px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    line-height: 1.6;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 56px 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  @media(max-width: 640px) {
+    header { padding: 40px 20px 28px; }
+    section { padding: 40px 20px; }
+    footer { padding: 28px 20px; }
+    .header-meta { text-align: left; }
+    .chart-container { padding: 20px 16px; }
+  }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.4;
+  }
+  h2 {
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 600;
+    margin-bottom: 28px;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── PROFILE ── */
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  @media(max-width: 640px) {
+    .profile-grid { grid-template-columns: 1fr; }
+  }
+  .profile-block p {
+    font-size: 15px;
+    color: #3a3a3a;
+    margin-bottom: 12px;
+  }
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    border: 1px solid var(--ink);
+    padding: 4px 12px;
+    color: var(--ink);
+  }
+  .tag.accent {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  /* ── KPI CARDS ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--ink);
+    border: 2px solid var(--ink);
+    margin-bottom: 40px;
+  }
+  @media(max-width: 640px) {
+    .kpi-grid { grid-template-columns: 1fr; }
+  }
+  .kpi-card {
+    background: var(--paper);
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi-card::after {
+    content: attr(data-num);
+    position: absolute;
+    right: -8px;
+    bottom: -16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 72px;
+    color: var(--cream);
+    font-weight: 500;
+    pointer-events: none;
+    line-height: 1;
+  }
+  .kpi-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .kpi-value {
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .kpi-value sup {
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .kpi-value sub {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--muted);
+  }
+  .kpi-desc {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+
+  /* ── CHART ── */
+  .chart-container {
+    background: var(--cream);
+    padding: 32px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .chart-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  canvas {
+    width: 100% !important;
+    height: 260px !important;
+  }
+  .chart-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── BEFORE / AFTER ── */
+  .ba-grid {
+    display: grid;
+    grid-template-columns: 1fr 40px 1fr;
+    gap: 0;
+    align-items: stretch;
+  }
+  @media(max-width: 600px) {
+    .ba-grid {
+      grid-template-columns: 1fr;
+    }
+    .ba-arrow {
+      width: 100%;
+      height: 44px;
+      transform: none;
+    }
+  }
+  .ba-card {
+    padding: 28px;
+    border: 1px solid var(--border);
+  }
+  .ba-card.before { background: #fff; }
+  .ba-card.after { background: var(--ink); color: var(--paper); }
+  .ba-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .ba-card.before .ba-badge { color: var(--muted); }
+  .ba-card.after .ba-badge { color: var(--gold); }
+  .ba-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+  .ba-card.after h3 { color: var(--paper); }
+  .ba-card ul {
+    list-style: none;
+    font-size: 14px;
+    line-height: 2;
+  }
+  .ba-card.before ul li::before { content: '✕ '; color: #c0392b; font-size: 11px; }
+  .ba-card.after ul li::before { content: '✓ '; color: var(--gold); font-size: 11px; }
+  .ba-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent);
+    color: white;
+    font-size: 20px;
+  }
+  .ba-result {
+    margin-top: 24px;
+    padding: 20px;
+    background: var(--cream);
+    border-left: 3px solid var(--gold);
+  }
+  .ba-result p {
+    font-size: 14px;
+    color: #3a3a3a;
+    margin-bottom: 4px;
+  }
+  .ba-result strong {
+    font-size: 22px;
+    color: var(--ink);
+    font-weight: 800;
+  }
+
+  /* ── SERVICE ── */
+  .service-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .service-item {
+    background: var(--paper);
+    padding: 24px;
+  }
+  .service-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .service-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .service-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-brand {
+    font-family: 'DM Mono', monospace;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+  }
+  footer p {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: none;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <p class="brand">Ad Operations Portfolio</p>
+    <h1>広告運用で、<br>成果を<span>数字</span>にする。</h1>
+  </div>
+  <div class="header-meta">
+    <p>yuen（ユエン）</p>
+    <p>広告運用・Webマーケティング</p>
+    <p>広島エリア対応 ／ 医療・製造業専門</p>
+  </div>
+</header>
+
+<!-- PROFILE -->
+<section class="fade-in">
+  <p class="section-label">01 — Profile</p>
+  <div class="profile-grid">
+    <div class="profile-block">
+      <p>放射線技師として約20年のキャリアを経て、Web広告運用の世界へ。医療機関の広告規制（医療広告ガイドライン・薬機法）に精通し、<strong>コンプライアンスを守りながら成果を出す</strong>広告運用を得意としています。</p>
+      <p>Google検索広告認定資格を保有。Google Ads・Yahoo!広告の両媒体に対応し、キーワード設計からLP改善・レポーティングまで一気通貫で支援します。</p>
+    </div>
+    <div class="profile-block">
+      <p class="section-label" style="margin-bottom:12px;">得意分野</p>
+      <div class="tag-list">
+        <span class="tag accent">Google 検索広告</span>
+        <span class="tag accent">Yahoo! 広告</span>
+        <span class="tag">医療広告ガイドライン対応</span>
+        <span class="tag">薬機法チェック</span>
+        <span class="tag">キーワード戦略</span>
+        <span class="tag">ネガティブKW精査</span>
+        <span class="tag">CV計測設定</span>
+        <span class="tag">レポート作成</span>
+        <span class="tag">医療・ヘルスケア</span>
+        <span class="tag">製造・BtoB</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="fade-in">
+  <p class="section-label">02 — Results</p>
+  <h2>実績数値</h2>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:28px;font-family:'DM Mono',monospace;">※ 業種：製造・販売業（BtoB）｜担当期間：2026年3月｜クライアント情報は匿名</p>
+
+  <div class="kpi-grid">
+    <div class="kpi-card" data-num="01">
+      <p class="kpi-label">Total Conversions</p>
+      <p class="kpi-value">~170<sub>件</sub></p>
+      <p class="kpi-desc">担当期間（3月）の累計CV数</p>
+    </div>
+    <div class="kpi-card" data-num="02">
+      <p class="kpi-label">CV / Week</p>
+      <p class="kpi-value">~40<sub>件</sub></p>
+      <p class="kpi-desc">週次CVの平均値<br>（安定した継続獲得を実現）</p>
+    </div>
+    <div class="kpi-card" data-num="03">
+      <p class="kpi-label">CV Stability</p>
+      <p class="kpi-value">安定<sub>推移</sub></p>
+      <p class="kpi-desc">構造改善後、日次CVが<br>継続的に発生する状態へ</p>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <p class="chart-title">CV Trend — 2026.03</p>
+    <canvas id="cvChart"></canvas>
+    <p class="chart-note">* 週次集計 ／ Google Ads 時系列データより作成（担当期間：2026年3月）</p>
+  </div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section class="fade-in">
+  <p class="section-label">03 — Case Study</p>
+  <h2>改善事例</h2>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:28px;font-family:'DM Mono',monospace;">※ 業種：製造・販売業（BtoB）｜Google Ads ＋ Yahoo!広告｜担当期間：2026年3月</p>
+
+  <div class="ba-grid">
+    <div class="ba-card before">
+      <span class="ba-badge">Before</span>
+      <h3>担当開始時の状態</h3>
+      <ul>
+        <li>CV計測が正しく設定されていなかった</li>
+        <li>広告グループが未整理で混在</li>
+        <li>ネガティブキーワードがほぼなし</li>
+        <li>業界外クエリに予算が流出</li>
+        <li>Yahoo!広告のタグ実装が不完全</li>
+      </ul>
+    </div>
+    <div class="ba-arrow">→</div>
+    <div class="ba-card after">
+      <span class="ba-badge">After</span>
+      <h3>構造改善・運用安定化</h3>
+      <ul>
+        <li>CV計測を全サンクスページに設定</li>
+        <li>4広告グループに再編・整理</li>
+        <li>検索クエリ分析でNGワード精査</li>
+        <li>業種別の3階層キーワード設計</li>
+        <li>Yahoo!タグ動作確認・修正完了</li>
+      </ul>
+    </div>
+  </div>
+  <div class="ba-result">
+    <p>改善後の成果</p>
+    <strong>担当1ヶ月で月次CV約170件を安定獲得</strong>
+    <p style="font-size:13px;color:var(--muted);margin-top:4px;">計測設定・構造・キーワードを見直し、継続的なリード獲得が安定化</p>
+  </div>
+</section>
+
+<!-- SERVICE -->
+<section class="fade-in">
+  <p class="section-label">04 — Services</p>
+  <h2>サービス内容</h2>
+  <div class="service-list">
+    <div class="service-item">
+      <p class="service-num">01</p>
+      <p class="service-title">広告運用代行</p>
+      <p class="service-desc">Google Ads・Yahoo!広告の設定・入稿・最適化・レポートまで一貫対応</p>
+    </div>
+    <div class="service-item">
+      <p class="service-num">02</p>
+      <p class="service-title">キーワード・構造設計</p>
+      <p class="service-desc">業種・競合分析をもとにした3階層のキーワード戦略とAG設計</p>
+    </div>
+    <div class="service-item">
+      <p class="service-num">03</p>
+      <p class="service-title">CV計測・タグ設定</p>
+      <p class="service-desc">Google タグマネージャーを活用したコンバージョン計測の設置・検証</p>
+    </div>
+    <div class="service-item">
+      <p class="service-num">04</p>
+      <p class="service-title">医療広告コンプライアンス</p>
+      <p class="service-desc">医療広告GL・薬機法に沿った広告文・LPのチェックと改善提案</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="footer-brand">yuen</p>
+  <p>広告運用 ／ Webマーケティング ／ 広島エリア対応</p>
+</footer>
+
+<!-- Chart.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+// ── CSV data aggregated by week ──
+const rawData = [
+  {date:'2025-12-05',imp:0,cv:0},{date:'2025-12-06',imp:0,cv:0},{date:'2025-12-07',imp:0,cv:0},{date:'2025-12-08',imp:0,cv:0},{date:'2025-12-09',imp:0,cv:0},{date:'2025-12-10',imp:0,cv:0},{date:'2025-12-11',imp:0,cv:0},
+  {date:'2025-12-12',imp:1,cv:0},{date:'2025-12-13',imp:0,cv:0},{date:'2025-12-14',imp:958,cv:0},{date:'2025-12-15',imp:37834,cv:0},{date:'2025-12-16',imp:42697,cv:1},{date:'2025-12-17',imp:65168,cv:0},{date:'2025-12-18',imp:47868,cv:2},
+  {date:'2025-12-19',imp:72239,cv:1},{date:'2025-12-20',imp:47592,cv:1},{date:'2025-12-21',imp:18108,cv:9},{date:'2025-12-22',imp:28298,cv:4},{date:'2025-12-23',imp:6147,cv:6},{date:'2025-12-24',imp:26410,cv:1},{date:'2025-12-25',imp:643,cv:3},
+  {date:'2025-12-26',imp:4703,cv:3},{date:'2025-12-27',imp:11256,cv:5},{date:'2025-12-28',imp:2716,cv:1},{date:'2025-12-29',imp:722,cv:8},{date:'2025-12-30',imp:339,cv:4},{date:'2025-12-31',imp:657,cv:6},
+  {date:'2026-01-01',imp:1241,cv:3},{date:'2026-01-02',imp:1700,cv:5},{date:'2026-01-03',imp:1711,cv:9},{date:'2026-01-04',imp:680,cv:9},{date:'2026-01-05',imp:329,cv:2},{date:'2026-01-06',imp:271,cv:1},{date:'2026-01-07',imp:326,cv:8},
+  {date:'2026-01-08',imp:287,cv:6},{date:'2026-01-09',imp:336,cv:9},{date:'2026-01-10',imp:170,cv:6},{date:'2026-01-11',imp:341,cv:15},{date:'2026-01-12',imp:181,cv:3},{date:'2026-01-13',imp:468,cv:9},{date:'2026-01-14',imp:120,cv:5},
+  {date:'2026-01-15',imp:184,cv:3.17},{date:'2026-01-16',imp:123,cv:3.17},{date:'2026-01-17',imp:151,cv:1},{date:'2026-01-18',imp:0,cv:0},{date:'2026-01-19',imp:481,cv:6},{date:'2026-01-20',imp:444,cv:10.67},{date:'2026-01-21',imp:276,cv:6},
+  {date:'2026-01-22',imp:240,cv:12},{date:'2026-01-23',imp:270,cv:2},{date:'2026-01-24',imp:393,cv:2},{date:'2026-01-25',imp:0,cv:0},{date:'2026-01-26',imp:299,cv:8},{date:'2026-01-27',imp:433,cv:2},{date:'2026-01-28',imp:484,cv:16},
+  {date:'2026-01-29',imp:352,cv:6},{date:'2026-01-30',imp:933,cv:16},{date:'2026-01-31',imp:1361,cv:6},
+  {date:'2026-02-01',imp:0,cv:0},{date:'2026-02-02',imp:365,cv:16},{date:'2026-02-03',imp:410,cv:4},{date:'2026-02-04',imp:1717,cv:6},{date:'2026-02-05',imp:808,cv:4},{date:'2026-02-06',imp:1115,cv:8},{date:'2026-02-07',imp:28027,cv:6},
+  {date:'2026-02-08',imp:0,cv:0},{date:'2026-02-09',imp:333,cv:14},{date:'2026-02-10',imp:465,cv:16},{date:'2026-02-11',imp:869,cv:26},{date:'2026-02-12',imp:692,cv:22},{date:'2026-02-13',imp:507,cv:14},{date:'2026-02-14',imp:17593,cv:12},
+  {date:'2026-02-15',imp:0,cv:0},{date:'2026-02-16',imp:522,cv:8},{date:'2026-02-17',imp:461,cv:14},{date:'2026-02-18',imp:495,cv:8},{date:'2026-02-19',imp:4352,cv:10},{date:'2026-02-20',imp:5920,cv:6},{date:'2026-02-21',imp:18764,cv:26},
+  {date:'2026-02-22',imp:0,cv:0},{date:'2026-02-23',imp:1146,cv:10},{date:'2026-02-24',imp:1416,cv:6},{date:'2026-02-25',imp:828,cv:22},{date:'2026-02-26',imp:625,cv:18},{date:'2026-02-27',imp:742,cv:24},{date:'2026-02-28',imp:443,cv:8},
+  {date:'2026-03-01',imp:519,cv:10},{date:'2026-03-02',imp:351,cv:8},{date:'2026-03-03',imp:477,cv:10},{date:'2026-03-04',imp:586,cv:16},{date:'2026-03-05',imp:515,cv:10},{date:'2026-03-06',imp:444,cv:6},{date:'2026-03-07',imp:607,cv:12},
+  {date:'2026-03-08',imp:331,cv:6},{date:'2026-03-09',imp:339,cv:12},{date:'2026-03-10',imp:388,cv:18},{date:'2026-03-11',imp:346,cv:16},{date:'2026-03-12',imp:382,cv:14},{date:'2026-03-13',imp:372,cv:16},{date:'2026-03-14',imp:545,cv:14},
+  {date:'2026-03-15',imp:559,cv:9},{date:'2026-03-16',imp:268,cv:9},{date:'2026-03-17',imp:442,cv:12},{date:'2026-03-18',imp:521,cv:10},{date:'2026-03-19',imp:384,cv:8},{date:'2026-03-20',imp:270,cv:2},{date:'2026-03-21',imp:408,cv:2},
+  {date:'2026-03-22',imp:411,cv:6},{date:'2026-03-23',imp:281,cv:2},{date:'2026-03-24',imp:195,cv:8},{date:'2026-03-25',imp:342,cv:4},{date:'2026-03-26',imp:230,cv:2},{date:'2026-03-27',imp:234,cv:4},{date:'2026-03-28',imp:214,cv:4},{date:'2026-03-29',imp:318,cv:2},{date:'2026-03-30',imp:231,cv:4},{date:'2026-03-31',imp:155,cv:0}
+];
+
+// ── 担当期間（2月25日〜）のデータのみ使用 ──
+const HANDOVER_WEEK = '2026-02-23'; // 2/25を含む週の月曜
+
+function getMonday(d) {
+  const dt = new Date(d);
+  const day = dt.getDay();
+  const diff = (day === 0 ? -6 : 1 - day);
+  dt.setDate(dt.getDate() + diff);
+  return dt.toISOString().slice(0, 10);
+}
+const weekMap = {};
+rawData.forEach(r => {
+  const w = getMonday(r.date);
+  if (w < HANDOVER_WEEK) return; // 担当前は除外
+  if (!weekMap[w]) weekMap[w] = { cv: 0 };
+  weekMap[w].cv += r.cv;
+});
+const weeks = Object.keys(weekMap).sort();
+const cvData = weeks.map(w => Math.round(weekMap[w].cv * 10) / 10);
+const labels = weeks.map(w => {
+  const d = new Date(w);
+  return `${d.getMonth()+1}/${d.getDate()}週`;
+});
+
+// Chart
+const ctx = document.getElementById('cvChart').getContext('2d');
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels,
+    datasets: [{
+      label: 'コンバージョン数（週次）',
+      data: cvData,
+      backgroundColor: cvData.map(v => {
+        if (v >= 80) return '#1a1a1a';
+        if (v >= 50) return '#5a5a5a';
+        return '#b8963e';
+      }),
+      borderWidth: 0,
+      borderRadius: 2,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#1a1a1a',
+        titleFont: { family: 'DM Mono', size: 11 },
+        bodyFont: { family: 'Shippori Mincho', size: 13 },
+        padding: 12,
+        callbacks: {
+          label: (c) => `  CV：${c.raw} 件`
+        }
+      }
+    },
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: {
+          font: { family: 'DM Mono', size: 10 },
+          color: '#888880',
+          maxRotation: 45,
+        }
+      },
+      y: {
+        grid: { color: '#e8e3d8', lineWidth: 1 },
+        ticks: {
+          font: { family: 'DM Mono', size: 10 },
+          color: '#888880',
+        },
+        beginAtZero: true,
+      }
+    }
+  }
+});
+
+// fade-in on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
